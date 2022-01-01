@@ -1,9 +1,8 @@
 import * as path from 'path';
 import * as fs from 'fs';
-import * as downloader from 'github-download-directory';
 import { HumanizedError } from './HumanizedError';
 import { TemplateModel } from './template-model';
-import * as handlebars from 'handlebars';
+import * as ejs from 'ejs';
 
 export function checkIfCodeGenInitializedInCurrentDirectory() {
     const codegenConfigFile = path.join(process.cwd(), 'codegen.config.json');
@@ -28,7 +27,7 @@ export function createCodegenConfigInCurrentDirectoryIfnotExists(codegenConfig) 
 export function createTemplateFiles(templateName, codegenDirectory, templateFileContent, scriptFileContent) {
     const root = path.join(process.cwd(), codegenDirectory);
     const templateDir = path.join(root, templateName);
-    const templateFile = path.join(templateDir, 'template.hbs');
+    const templateFile = path.join(templateDir, 'template.ejs');
     const templateScriptFile = path.join(templateDir, 'template.js');
     if (!fs.existsSync(root)) {
         fs.mkdirSync(root);
@@ -71,8 +70,8 @@ export async function executeScript(codegenDirectory, templateName, args: any): 
 export function executeTemplate(codegenDirectory, templateName, model: TemplateModel): string {
     const templateDirectoryPath = `${codegenDirectory}/${templateName}`;
 
-    const tempAbsolutePath = path.join(process.cwd(), templateDirectoryPath, 'template.hbs');
-    // hbs template file
+    const tempAbsolutePath = path.join(process.cwd(), templateDirectoryPath, 'template.ejs');
+    // ejs template file
     const templateFilePath = model.templateFile ? path.resolve(model.templateFile) : tempAbsolutePath;
 
     // check if template file exists if not exists throw error
@@ -80,20 +79,14 @@ export function executeTemplate(codegenDirectory, templateName, model: TemplateM
         throw new HumanizedError(`Template ${templateName} file not found at location ${templateFilePath}.`);
     }
 
-    // run hbs template file
+    // run ejs template file
     const template = fs.readFileSync(templateFilePath, 'utf8');
-    const compiledTemplate = handlebars.compile(template);
+    const compiledTemplate = ejs.compile(template, {
+        root: [path.join(process.cwd(), templateDirectoryPath)]
+    });
     const result = compiledTemplate(model.model);
 
     return result;
-}
-
-export function downloadFolderFromGithub() {
-    downloader.download('phated', 'github-download-directory', 'index.js').then((res) => {
-        console.log(res);
-    }, (err) => {
-        console.log(err);
-    });
 }
 
 export function actionRunner(fn: (...args) => Promise<any>, errorHandler: (error: Error) => void) {

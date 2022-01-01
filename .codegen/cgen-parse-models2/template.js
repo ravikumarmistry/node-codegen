@@ -21,7 +21,7 @@ module.exports = async function script (args) {
             // add model properties here
             msg: 'lets start generating your code',
         }, // default to empty object
-        overideFile: false,
+        overideFile: true,
     };
     templateModels.push(templateModel);
     return templateModels;
