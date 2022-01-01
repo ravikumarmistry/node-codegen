@@ -59,12 +59,12 @@ export function checkIfTemplateExistsAndReturnFlag(templateName, codegenDirector
     return isExists;
 }
 
-export async function executeScript(codegenDirectory, templateName): Promise<TemplateModel[] | TemplateModel> {
+export async function executeScript(codegenDirectory, templateName, args: any): Promise<TemplateModel[] | TemplateModel> {
     const scriptImportPath = `${codegenDirectory}/${templateName}/template.js`;
     const scriptAbsolutePath = path.join(process.cwd(), scriptImportPath);
     const scripModule = await import(scriptAbsolutePath);
     const runScript = scripModule;
-    const model = await runScript();
+    const model = await runScript(args);
     return model;
 }
 

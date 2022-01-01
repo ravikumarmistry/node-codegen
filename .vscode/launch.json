@@ -15,7 +15,7 @@
             ],
             "args": [
                 "run",
-                "cgen-parse-models"
+                "cgen-parse-models2"
             ]
         }
     ]

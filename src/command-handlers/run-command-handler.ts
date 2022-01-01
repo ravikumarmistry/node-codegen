@@ -16,7 +16,7 @@ const runCommandHandler = async (templateName, args) => {
     // run template script file
     var model: TemplateModel[] | TemplateModel;
     try {
-        model = await executeScript(codegenDirectory, templateName);
+        model = await executeScript(codegenDirectory, templateName, args);
     } catch (error) {
         throw new HumanizedError(`Error while executing template script file.`, error, true);
     }

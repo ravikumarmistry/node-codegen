@@ -18,7 +18,7 @@ program
   .action(actionRunner(initCommandHandler, errorHandler));
 
 program
-  .command('new <template-name> [args]')
+  .command('new <template-name>')
   .alias('n')
   .description('Create a new template')
   .action(actionRunner(newCommandHandler, errorHandler));

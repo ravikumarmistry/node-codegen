@@ -14,7 +14,7 @@ export const scriptDefaultTemplate = `
 //     }, // default to empty object
 //     overideFile: false,
 // };
-module.exports = async function script () {
+module.exports = async function script (args) {
     let templateModels = [];
 
     // create template model

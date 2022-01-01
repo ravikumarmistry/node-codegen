@@ -1,24 +1,50 @@
 {
-  "name": "codegen",
+  "title": "Node code generator",
+  "name": "node-codegen",
   "version": "1.0.0",
-  "description": "A node scriptable, language agnostic code genrator for smart developers.",
+  "description": "A template based, language agnostic, node scriptable code genrator for smart developers.",
   "main": "dist/index.js",
   "scripts": {
     "start": "node dist/index.js",
     "prestart": "npm run build",
     "build": "tsc"
   },
-  "author": "Ravi Kumar Mistry",
   "license": "MIT",
   "dependencies": {
-    "commander": "^8.3.0",
-    "handlebars": "^4.7.7"
+    "commander": "8.3.0",
+    "handlebars": "4.7.7"
   },
   "devDependencies": {
-    "@types/node": "^17.0.5",
-    "typescript": "^4.5.4"
+    "@types/node": "17.0.5",
+    "typescript": "4.5.4"
   },
   "bin": {
     "codegen": "./dist/index.js"
+  },
+  "keywords": [
+    "node",
+    "codegen",
+    "generator",
+    "template",
+    "language",
+    "agnostic",
+    "scriptable"
+  ],
+  "homepage": "https://github.com/ravikumarmistry/node-codegen#readme",
+  "bugs": {
+    "url": "https://github.com/ravikumarmistry/node-codegen/issues"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://www.opensource.org/licenses/mit-license.php"
+    }
+  ],
+  "author": {
+    "name": "Ravi Kumar Mistry"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ravikumarmistry/node-codegen"
   }
 }
