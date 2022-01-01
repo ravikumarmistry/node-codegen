@@ -1,5 +1,5 @@
-# ravi-codegen
-A template based, language agnostic, node scriptable code generator for smart developers .
+# node-codegen
+A template based, language agnostic, node scriptable code generator for developers .
 
 ## Installation
 
@@ -26,7 +26,7 @@ Every template consist of at least two files
 ### Template script
 Template script file is the entry point of your template script. Every template script must expose a default function that returns one or more Template models.
 
-Every template model must have following fields.
+Every template model can have following fields.
 
 1. fileName - `Template output file name, default: <template-name>`
 2. directory - `Output directory relative path from current directory, default: ., eg. ../entities`
