@@ -1,5 +1,5 @@
 # node-codegen
-A template based, language agnostic, node scriptable code generator for smart developers .
+A template based, language agnostic, node scriptable code generator for developers .
 
 ## Installation
 
